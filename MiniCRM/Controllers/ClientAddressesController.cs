@@ -27,6 +27,7 @@ namespace MiniCRM.Controllers
         }
 
         // GET: ClientAddresses/Details/5
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.ClientAddresses == null)

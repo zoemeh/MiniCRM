@@ -35,7 +35,7 @@ namespace MiniCRM.Controllers
                 return NotFound();
             }
 
-            var client = await _context.Clients
+            var client = await _context.Clients.Include(client => client.Addresses)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (client == null)
             {
@@ -75,7 +75,7 @@ namespace MiniCRM.Controllers
                 return NotFound();
             }
 
-            var client = await _context.Clients.FindAsync(id);
+            var client = await _context.Clients.Include(client => client.Addresses).FirstOrDefaultAsync(m => m.Id == id);
             if (client == null)
             {
                 return NotFound();
@@ -88,7 +88,7 @@ namespace MiniCRM.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,IsActive")] Client client)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,IsActive,Addresses")] Client client)
         {
             if (id != client.Id)
             {

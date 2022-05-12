@@ -9,24 +9,56 @@
 <h4>Client</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-8">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
+            <div class="form-group mb-3">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div>
+                <h4>Addresses</h4>
+                @{
+                    for (var i = 0; i < Model.Addresses.Count; i++)
+                    {
+                        <div class="card mb-2">
+                            <div class="card-body">
+                                @Html.HiddenFor(x => Model.Addresses[i].Id)
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">Line 1</span>
+                                    @Html.TextBoxFor(x => Model.Addresses[i].AddressLine1, new {@class = "form-control"})
+                                    <span class="input-group-text">Line 2</span>
+                                    @Html.TextBoxFor(x => Model.Addresses[i].AddressLine2, new {@class = "form-control"})
+                                    <span class="input-group-text">Zipcode</span>
+                                    @Html.TextBoxFor(x => Model.Addresses[i].ZipCode, new {@class = "form-control"})
+                                </div>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">City</span>
+                                    @Html.TextBoxFor(x => Model.Addresses[i].City, new {@class = "form-control"})
+                                    <span class="input-group-text">State</span>
+                                    @Html.TextBoxFor(x => Model.Addresses[i].State, new {@class = "form-control"})
+                                    <span class="input-group-text">Country</span>
+                                    @Html.TextBoxFor(x => Model.Addresses[i].Country, new {@class = "form-control"})
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                }
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
                 </label>
             </div>
+            
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
+
     </div>
 </div>
 
@@ -34,6 +66,9 @@
     <a asp-action="Index">Back to List</a>
 </div>
 
+
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+                                                }

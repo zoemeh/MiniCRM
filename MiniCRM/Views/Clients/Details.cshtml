@@ -23,6 +23,34 @@
             @Html.DisplayFor(model => model.IsActive)
         </dd>
     </dl>
+    <div>
+        <h4>Addresses</h4>
+        <table class="table">
+            <thead>
+                <th>Line 1</th>
+                <th>Line 2</th>
+                <th>Zipcode</th>
+                <th>City</th>
+                <th>State</th>
+                <th>Country</th>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var address in Model.Addresses)
+                    {
+                        <tr>
+                            <td>@address.AddressLine1</td>
+                            <td>@address.AddressLine2</td>
+                            <td>@address.ZipCode</td>
+                            <td>@address.City</td>
+                            <td>@address.State</td>
+                            <td>@address.Country</td>
+                        </tr>
+                    }
+                }  
+            </tbody>
+        </table>
+    </div>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
