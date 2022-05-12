@@ -12,5 +12,7 @@
         [Required]
         public bool IsActive { get; set; }
 
+        public List<ClientAddress> Addresses { get; set; }
+
     }
 }
