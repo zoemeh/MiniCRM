@@ -9,10 +9,10 @@
         [Required]
         // No StringLenght validations because there are actually names that are only 1 character and there's not upper limit.
         public string Name { get; set; }
-        [Required]
+        
         public bool IsActive { get; set; }
 
-        public List<ClientAddress> Addresses { get; set; }
+        public List<ClientAddress>? Addresses { get; set; }
 
     }
 }
